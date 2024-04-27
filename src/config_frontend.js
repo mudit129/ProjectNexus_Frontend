@@ -1,7 +1,7 @@
 module.exports = {
   client: {
-    host: "http://localhost:3000",
-    // host: "https://662d327f636a1d0028b38e71--graceful-torrone-0c6fde.netlify.app",
+    // host: "http://localhost:3000",
+    host: "https://project-nexus-iitkgp.vercel.app/",
     port: "3000",
   },
 
