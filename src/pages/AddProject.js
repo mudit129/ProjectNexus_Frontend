@@ -102,7 +102,7 @@ const AddProject = (props) => {
         console.log(formData);
 
         // API Call
-        const result = await axios
+        await axios
           .post(`${host}/api/projects/addproject`, formData, {
             headers: {
               // "Content-Type": "application/json",
