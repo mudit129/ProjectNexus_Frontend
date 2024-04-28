@@ -97,7 +97,7 @@ const ProjectDetails = () => {
         </div>
 
         <div>
-          <h2 style={{ color: "#406882", fontWeight: "bold" }}>{title}</h2>
+          <h2 className="mb-4" style={{ color: "#406882", fontWeight: "bold" }}>{title}</h2>
         </div>
       </div>
 

@@ -44,8 +44,8 @@ const ProjectCard = (props) => {
       getType();
   }, [page]);
 
-  const trimDesc = (desc) => {
-    if (desc.length > 50) desc = desc.slice(0, 50) + "....";
+  const trimDesc = (desc, len) => {
+    if (desc.length > len) desc = desc.slice(0, len) + "....";
     return desc;
   };
   console.log(project._id);
@@ -104,7 +104,7 @@ const ProjectCard = (props) => {
         <div className="card-body">
           <div className="d-flex bd-highlight">
             <h5 className="p flex-grow-1 bd-highlight card-title">
-              {project.title}
+            {trimDesc(project.title, 30)}
             </h5>
             {page !== "all" ? (
               <i
@@ -128,7 +128,7 @@ const ProjectCard = (props) => {
               <></>
             )}
           </div>
-          <p className="card-text">{trimDesc(project.desc)}</p>
+          <p className="card-text">{trimDesc(project.desc, 50)}</p>
 
           <br></br>
           <br></br>
