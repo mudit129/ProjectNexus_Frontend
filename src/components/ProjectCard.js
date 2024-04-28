@@ -11,7 +11,7 @@ const ProjectCard = (props) => {
   const navigate = useNavigate();
   const { project, updateProject, deleteProject, page, md } = props;
   const [type, setType] = useState("");
-  // let [flag, setFlag] = useState(true);
+  let [flag, setFlag] = useState(true);
   const getType = async () => {
     const url = `${host}/api/auth/getuser`;
     const result = await axios.get(url, {
@@ -50,12 +50,44 @@ const ProjectCard = (props) => {
   };
   console.log(project._id);
   console.log(project.image);
+  
+  const checkImageExists = async (filename) => {
+    try {
+        const response = await fetch(`${host}/check-image/${filename}`);
+        if (response.ok) {
+            // Image exists, display it
+            return true;
+        } else {
+            // Image does not exist, display default page
+            return false;
+        }
+    } catch (error) {
+        console.error('Error checking image existence:', error);
+        // Handle error
+        return false;
+    }
+};
   const imgurl = `${host}/files/${project.image}`
   console.log(imgurl);
+
+  useEffect(() => {
+    checkImageExists(project.image)
+        .then((exists) => {
+            if (exists) {
+                // Image exists, proceed to display it
+                setFlag(true);
+            } else {
+                // Image does not exist, display default page
+                setFlag(false);
+            }
+        });
+}, [project.image]);
+
   return (
     <div className={`col-md-${md}`}>
       <div className="card my-3 mx-2" style={{ borderColor: "#1A374D" }}>
-        {!project.image || !(`${host}/files/${project.image}`) ? (
+        {/* {!project.image ? ( */}
+        {!flag ? (
           <ProjectImage
             projectimage={img}
             className="card-img-top"
