@@ -37,6 +37,7 @@ const ProjectCard = (props) => {
     const json = await response.json();
     console.log(json);
     console.log("Project approved");
+    props.showAlert("Project approved succesfully", "success");
   };
 
   useEffect(() => {
